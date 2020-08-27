@@ -20,21 +20,16 @@ function Board(props) {
 
   return (
     <div>
-      <div className="board-row">
-        {renderSquare(0)}
-        {renderSquare(1)}
-        {renderSquare(2)}
-      </div>
-      <div className="board-row">
-        {renderSquare(3)}
-        {renderSquare(4)}
-        {renderSquare(5)}
-      </div>
-      <div className="board-row">
-        {renderSquare(6)}
-        {renderSquare(7)}
-        {renderSquare(8)}
-      </div>
+      {
+        [...Array(3).keys()].map((j) => {
+          return (
+            <div className="board-row">
+              {[...Array(3).keys()].map((i) => {
+                  return renderSquare(3*j+i)
+                })}
+            </div>)
+          })
+      }
     </div>
   );
 }
@@ -69,7 +64,7 @@ function Game(){
     return (
       <li key={move}>
         <button onClick={() => jumpTo(move)}>
-          {move == stepNumber ?<b>{desc}</b> : desc}
+          {move === stepNumber ?<b>{desc}</b> : desc}
         </button>
       </li>
     );
